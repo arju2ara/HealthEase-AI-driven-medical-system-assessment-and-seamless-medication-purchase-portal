@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow-sm fixed-top" style="background-color: #343a40 !important; min-height: 70px; display: flex; align-items: center;">
+    <a class="navbar-brand text-white logo-text" href="/" style="font-family: 'Dancing Script', cursive; font-size: 28px; display: flex; align-items: center;">HealthEase</a>
+    <div class="d-flex flex-grow-1 align-items-center justify-content-between" style="width: 100%; display: flex; align-items: center;">
+        <div class="input-group justify-content-center mx-auto" style="max-width: 700px; width: 60%; display: flex; align-items: center;">
+            <form action="/search" method="get" class="w-100 m-0" style="display: flex; align-items: center;">
+                <div class="input-group" style="position: relative; display: flex; align-items: center;">
+                    <input type="text" class="form-control" 
+                           style="border-radius: 50px; padding: 20px 120px 20px 20px; height: 45px; position: relative;" 
+                           name="q" placeholder="Search your medicine (Ex: Napa)">
+                    <div class="input-group-append" style="position: absolute; right: 4px; top: 3.5px; display: flex; align-items: center;">
+                        <button class="btn text-white" 
+                                style="border-radius: 50px; background-color: #0d6efd; height: 38px; width: 100px; z-index: 10; display: flex; align-items: center;" 
+                                type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <ul class="navbar-nav ml-auto flex-row align-items-center" style="gap: 20px; margin-bottom: 0; display: flex; align-items: center;">
+            {% if session.logged_in %}
+            <li class="nav-item d-flex align-items-center"><a href="/shop" class="nav-link text-white nav-hover" style="display: flex; align-items: center; height: 100%;">Home</a></li>
+            <li class="nav-item d-flex align-items-center"><a href="/profile?user={{session.uid}}" class="nav-link text-white nav-hover" style="display: flex; align-items: center; height: 100%;">Profile</a></li>
+            <li class="nav-item d-flex align-items-center"><a href="/out" class="nav-link text-white nav-hover" style="display: flex; align-items: center; height: 100%;">Logout</a></li>
+            {% else %}
+            <li class="nav-item d-flex align-items-center"><a href="/shop" class="nav-link text-white nav-hover" style="display: flex; align-items: center; height: 100%;">Home</a></li>
+            <li class="nav-item d-flex align-items-center"><a href="/register" class="nav-link text-white nav-hover" style="display: flex; align-items: center; height: 100%;">Signup</a></li>
+            <li class="nav-item d-flex align-items-center"><a href="/login" class="nav-link text-white nav-hover" style="display: flex; align-items: center; height: 100%;">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<style>
+    .logo-text {
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        letter-spacing: 1px;
+    }
+    
+    .nav-hover {
+        position: relative;
+        transition: color 0.3s ease;
+    }
+    
+    .nav-hover:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: #1877f2;
+        left: 0;
+        bottom: 0;
+        transition: width 0.3s ease;
+    }
+    
+    .nav-hover:hover {
+        color: #1877f2 !important;
+    }
+    
+    .nav-hover:hover:after {
+        width: 100%;
+    }
+    
+    /* Ensure navbar elements stay vertically centered */
+    .navbar a, .navbar div, .navbar button, .navbar ul, .navbar li {
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .navbar a:hover, .navbar a.active {
+        display: flex !important;
+        align-items: center !important;
+        height: 100% !important;
+    }
+    
+    .navbar .d-flex {
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .navbar .navbar-nav {
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .navbar .nav-item {
+        display: flex !important;
+        align-items: center !important;
+        height: 100% !important;
+    }
+</style>

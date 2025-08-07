@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer - Medicine Recommendation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .logo-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+        .logo-text:hover {
+            color: #93c5fd;
+            text-decoration: none;
+        }
+        .main-content {
+            flex: 1;
+            padding-top: 80px;
+            padding-bottom: 2rem;
+            background-color: #f9fafb;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .developer-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        .developer-content h4 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .developer-content h4:first-child {
+            margin-top: 0;
+        }
+        .developer-content p {
+            color: #4b5563;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 3rem 0;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        .footer-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .footer-description {
+            font-size: 1.1rem;
+            color: #e5e7eb;
+            margin-bottom: 2rem;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .social-icons img {
+            width: 2rem;
+            height: 2rem;
+            opacity: 0.9;
+        }
+        .copyright {
+            color: #e5e7eb;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800 text-white p-4 fixed w-full top-0 left-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-8">
+                    <!-- Logo -->
+                    <a href="{{ url_for('home') }}" class="logo-text">HealthEase</a>
+                    <!-- Navigation Links -->
+                    <div class="hidden lg:flex space-x-8">
+                        <a href="{{ url_for('home') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                           onclick="setActiveLink(this)">Home</a>
+                        <a href="{{ url_for('about') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                           onclick="setActiveLink(this)">About</a>
+                        <a href="{{ url_for('contact') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                           onclick="setActiveLink(this)">Contact</a>
+                        <a href="{{ url_for('developer') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                           onclick="setActiveLink(this)">Developer</a>
+                        <a href="{{ url_for('blog') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                           onclick="setActiveLink(this)">Blog</a>
+                    </div>
+                </div>
+
+                <!-- Laravel Website Link -->
+                <div class="flex items-center">
+                    <a href="http://127.0.0.1:8000" class="purchase-medicine-link">
+                        <span class="star-icon">✦</span>Purchase Medicine
+                    </a>
+                    <!-- Mobile Menu Button -->
+                    <div class="lg:hidden ml-4">
+                        <button class="text-white hover:text-gray-300 focus:outline-none" onclick="toggleMenu()">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobileMenu" class="hidden lg:hidden mt-2">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-700 rounded-md">
+                    <a href="{{ url_for('home') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                       onclick="setActiveLink(this)">Home</a>
+                    <a href="{{ url_for('about') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                       onclick="setActiveLink(this)">About</a>
+                    <a href="{{ url_for('contact') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                       onclick="setActiveLink(this)">Contact</a>
+                    <a href="{{ url_for('developer') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                       onclick="setActiveLink(this)">Developer</a>
+                    <a href="{{ url_for('blog') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                       onclick="setActiveLink(this)">Blog</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="developer-content">
+                <h4>Meet the Developer</h4>
+                <p>Hello, We are Farzana and Afrin. We are passionate about harnessing the power of technology to make a positive impact
+                    on people's lives. Allow me to share a bit about my journey in the world of artificial intelligence and machine learning.</p>
+
+                <h4>Our Expertise</h4>
+                <p>Our work is driven by a commitment to excellence and a belief that technology should be accessible and beneficial to
+                    everyone. Whether it's developing predictive models, creating intelligent algorithms, or designing user-friendly
+                    interfaces, we strive for solutions that are both cutting-edge and user-centric.</p>
+
+                <h4>Passion for Health Tech</h4>
+                <p>The development of Medicine Recommendation represents a convergence of my passion for AI and my dedication to improving
+                    healthcare accessibility. I believe that AI has the potential to transform the way we approach healthcare, making it
+                    more personalized and informative. This platform is a testament to that vision.</p>
+
+                <h4>Join us on this Journey</h4>
+                <p>We invite you to explore Medicine Recommendation and experience firsthand the fusion of AI and healthcare. Together, we
+                    can empower individuals with knowledge, promote well-being, and contribute to a brighter and healthier future.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-title">Medicine Recommendation</h3>
+            <p class="footer-description">Your guide to choosing the right medicine based on your symptoms and condition.</p>
+
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+                <a href="#" class="hover:opacity-80">
+                    <img src="{{ url_for('static', filename='images/icon1.svg') }}" alt="Whatsapp">
+                </a>
+                <a href="#" class="hover:opacity-80">
+                    <img src="{{ url_for('static', filename='images/linkedin-brands-solid.svg') }}" alt="LinkedIn">
+                </a>
+                <a href="#" class="hover:opacity-80">
+                    <img src="{{ url_for('static', filename='images/square-instagram-brands-solid.svg') }}" alt="Instagram">
+                </a>
+                <a href="#" class="hover:opacity-80">
+                    <img src="{{ url_for('static', filename='images/square-twitter-brands-solid.svg') }}" alt="Twitter">
+                </a>
+                <a href="#" class="hover:opacity-80">
+                    <img src="{{ url_for('static', filename='images/github-brands-solid.svg') }}" alt="Github">
+                </a>
+            </div>
+
+            <p class="copyright">&copy; 2024 Medicine Recommendation. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function setActiveLink(element) {
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('border-white');
+            });
+            element.classList.add('border-white');
+        }
+    </script>
+</body>
+</html>

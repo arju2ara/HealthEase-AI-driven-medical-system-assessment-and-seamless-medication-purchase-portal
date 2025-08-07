@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h4><i class="fa fa-times-circle"></i> Payment Failed</h4>
+                </div>
+                <div class="card-body text-center">
+                    <i class="fa fa-times-circle text-danger" style="font-size: 4rem;"></i>
+                    <h3 class="mt-3">Payment Unsuccessful</h3>
+                    <p class="lead">Sorry, your payment could not be processed.</p>
+                    <p>Please try again or contact customer support if the problem persists.</p>
+                    
+                    <div class="alert alert-warning">
+                        <strong>Possible reasons:</strong><br>
+                        • Insufficient funds<br>
+                        • Network connectivity issues<br>
+                        • Payment gateway temporarily unavailable<br>
+                        • Invalid payment information
+                    </div>
+                    
+                    <div class="mt-4">
+                        <a href="{{ url_for('shop') }}" class="btn btn-primary">Try Again</a>
+                        <a href="{{ url_for('contact') }}" class="btn btn-secondary">Contact Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

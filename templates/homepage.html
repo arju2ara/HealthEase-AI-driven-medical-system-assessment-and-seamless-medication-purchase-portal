@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Recommendation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Navigation Bar -->
+<nav class="bg-gray-800 text-white p-4 fixed w-full top-0 left-0 z-50">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <!-- Logo -->
+                <a href="#" class="logo-text">HealthEase</a>
+                <!-- Navigation Links -->
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                       onclick="setActiveLink(this)">Home</a>
+                    <a href="{{ url_for('about') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                       onclick="setActiveLink(this)">About</a>
+                    <a href="{{ url_for('contact') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                       onclick="setActiveLink(this)">Contact</a>
+                    <a href="{{ url_for('developer') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                       onclick="setActiveLink(this)">Developer</a>
+                    <a href="{{ url_for('blog') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                       onclick="setActiveLink(this)">Blog</a>
+                </div>
+            </div>
+
+            <!-- Laravel Website Link -->
+            <div class="flex items-center">
+                <a href="http://127.0.0.1:8000" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2">
+                    <span class="star-icon">✦</span>Go to Laravel Website
+                </a>
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden ml-4">
+                    <button class="text-white hover:text-gray-300 focus:outline-none" onclick="toggleMenu()">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden mt-2">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-700 rounded-md">
+                <a href="#" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                   onclick="setActiveLink(this)">Home</a>
+                <a href="{{ url_for('about') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                   onclick="setActiveLink(this)">About</a>
+                <a href="{{ url_for('contact') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                   onclick="setActiveLink(this)">Contact</a>
+                <a href="{{ url_for('developer') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                   onclick="setActiveLink(this)">Developer</a>
+                <a href="{{ url_for('blog') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                   onclick="setActiveLink(this)">Blog</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Remove the entire Login & Signup Section -->
+    <div class="flex justify-center items-center min-h-screen bg-cover bg-center p-4" style="background-image: url('shooting-background.jpg')">
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-6 mt-20">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex justify-center mb-4">
+                <h3 class="text-2xl font-semibold">Medicine Recommendation</h3>
+            </div>
+            <p class="mb-4">Your guide to choosing the right medicine based on your symptoms and condition.</p>
+
+            <!-- Social Media Icons -->
+            <div class="flex justify-center space-x-4 mb-4">
+                <a href="#" class="flex items-center justify-center text-blue-400">
+                    <img src="{{ url_for('static', filename='images/icon1.svg') }}" alt="Whatsapp" class="w-8 h-8 rounded-full">
+                </a>
+                <a href="#" class="flex items-center justify-center text-blue-400">
+                    <img src="{{ url_for('static', filename='images/linkedin-brands-solid.svg') }}" alt="LinkedIn" class="w-8 h-8 rounded-full">
+                </a>
+                <a href="#" class="flex items-center justify-center text-blue-400">
+                    <img src="{{ url_for('static', filename='images/square-instagram-brands-solid.svg') }}" alt="Instagram" class="w-8 h-8 rounded-full">
+                </a>
+                <a href="#" class="flex items-center justify-center text-blue-400">
+                    <img src="{{ url_for('static', filename='images/square-twitter-brands-solid.svg') }}" alt="Twitter" class="w-8 h-8 rounded-full">
+                </a>
+                <a href="#" class="flex items-center justify-center text-blue-400">
+                    <img src="{{ url_for('static', filename='images/github-brands-solid.svg') }}" alt="Github" class="w-8 h-8 rounded-full">
+                </a>
+            </div>
+
+            <p class="mt-4">&copy; 2024 Medicine Recommendation. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Remove login/signup related functions
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function setActiveLink(element) {
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('border-white');
+            });
+            element.classList.add('border-white');
+        }
+    </script>
+
+</body>
+</html>

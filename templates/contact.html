@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Medicine Recommendation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .logo-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+        .logo-text:hover {
+            color: #93c5fd;
+            text-decoration: none;
+        }
+        .main-content {
+            flex: 1;
+            padding-top: 80px;
+            padding-bottom: 2rem;
+            background-color: #f9fafb;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .contact-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        .contact-content h4 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .contact-content h4:first-child {
+            margin-top: 0;
+        }
+        .contact-content p {
+            color: #4b5563;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .contact-info {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            margin: 2rem 0;
+        }
+        .contact-info p {
+            margin-bottom: 1rem;
+        }
+        .contact-info p:last-child {
+            margin-bottom: 0;
+        }
+        .contact-info b {
+            color: #1f2937;
+            font-weight: 600;
+        }
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 3rem 0;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        .footer-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .footer-description {
+            font-size: 1.1rem;
+            color: #e5e7eb;
+            margin-bottom: 2rem;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .social-icons img {
+            width: 2rem;
+            height: 2rem;
+            opacity: 0.9;
+        }
+        .copyright {
+            color: #e5e7eb;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Ensure navbar elements stay vertically centered */
+        .navbar a, .navbar div, .navbar button {
+            display: flex !important;
+            align-items: center !important;
+        }
+        
+        .navbar a:hover, .navbar a.border-white {
+            display: flex !important;
+            align-items: center !important;
+            height: 100% !important;
+        }
+        
+        .navbar .flex {
+            display: flex !important;
+            align-items: center !important;
+        }
+        
+        .navbar .space-x-8 > * {
+            display: flex !important;
+            align-items: center !important;
+            height: 100% !important;
+        }
+        
+        /* Navigation link hover and active effects */
+        .navbar a {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            color: #3b82f6 !important;
+            border-bottom-color: #3b82f6 !important;
+        }
+        
+        .navbar a.active {
+            color: #3b82f6 !important;
+            border-bottom-color: #3b82f6 !important;
+            border-bottom-width: 2px !important;
+        }
+        
+        /* Underline effect on hover and active */
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800 text-white p-4 fixed w-full top-0 left-0 z-50" style="min-height: 70px; display: flex; align-items: center;">
+        <div class="container mx-auto px-4" style="display: flex; align-items: center; height: 100%;">
+            <div class="flex justify-between items-center" style="width: 100%; display: flex; align-items: center;">
+                <div class="flex items-center space-x-8" style="display: flex; align-items: center;">
+                    <!-- Logo -->
+                    <a href="{{ url_for('home') }}" class="logo-text" style="display: flex; align-items: center;">HealthEase</a>
+                    <!-- Navigation Links -->
+                    <div class="hidden lg:flex space-x-8" style="display: flex; align-items: center;">
+                        <a href="{{ url_for('home') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                           onclick="setActiveLink(this)" style="display: flex; align-items: center; height: 100%;">Home</a>
+                        <a href="{{ url_for('about') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                           onclick="setActiveLink(this)" style="display: flex; align-items: center; height: 100%;">About</a>
+                        <a href="{{ url_for('contact') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2 active"
+                           onclick="setActiveLink(this)" style="display: flex; align-items: center; height: 100%;">Contact</a>
+
+                        <a href="{{ url_for('blog') }}" class="text-white hover:text-blue-300 border-b-2 border-transparent hover:border-white transition py-2"
+                           onclick="setActiveLink(this)" style="display: flex; align-items: center; height: 100%;">Blog</a>
+                    </div>
+                </div>
+
+                <!-- Laravel Website Link -->
+                <div class="flex items-center" style="height:100%;align-items:center;display:flex;">
+                    <a href="{{ url_for('shop') }}" class="purchase-medicine-link" style="display: flex; align-items: center;">
+                        <span class="star-icon">✦</span>Purchase Medicine
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobileMenu" class="hidden lg:hidden mt-2">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-700 rounded-md">
+                    <a href="{{ url_for('home') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                       onclick="setActiveLink(this)">Home</a>
+                    <a href="{{ url_for('about') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                       onclick="setActiveLink(this)">About</a>
+                    <a href="{{ url_for('contact') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                       onclick="setActiveLink(this)">Contact</a>
+                   
+                    <a href="{{ url_for('blog') }}" class="block text-white hover:text-blue-300 border-b border-transparent hover:border-white transition py-2 px-3"
+                       onclick="setActiveLink(this)">Blog</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="contact-content">
+                <h4>Contact Us</h4>
+                <p>Have questions or need assistance? We're here to help!</p>
+
+                <h4>Customer Support</h4>
+                <p>Our dedicated customer support team is available to assist you with any inquiries or issues you may have. Whether it's a technical question, feedback, or a general inquiry, we're just a message away.</p>
+
+                <h4>Get in Touch</h4>
+                <p>Feel free to reach out to us via email or through the contact form below. We value your feedback and are committed to providing you with the best possible experience.</p>
+
+                <div class="contact-info">
+                    <p><b>Email:</b> abcd@gmail.com</p>
+                    <p><b>Phone:</b> 012345789</p>
+                </div>
+
+                <h4>Stay Connected</h4>
+                <p>Stay up-to-date with the latest news, updates, and health tips by following us on social media. Connect with us on Facebook or Instagram to join our growing community.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex justify-center mb-4">
+                <h3 class="text-2xl font-semibold">Medicine Recommendation</h3>
+            </div>
+            <p class="mb-4">Your guide to choosing the right medicine based on your symptoms and condition.</p>
+
+            <!-- Social Media Icons -->
+            <div class="flex justify-center space-x-4 mb-4">
+                <a href="#" class="text-blue-400"><img src="{{ url_for('static', filename='images/icon1.svg') }}" alt="Whatsapp" class="w-8 h-8"></a>
+                <a href="#" class="text-blue-400"><img src="{{ url_for('static', filename='images/linkedin.svg') }}" alt="LinkedIn" class="w-8 h-8"></a>
+                <a href="#" class="text-blue-400"><img src="{{ url_for('static', filename='images/instagram.svg') }}" alt="Instagram" class="w-8 h-8"></a>
+                <a href="#" class="text-blue-400"><img src="{{ url_for('static', filename='images/twitter.svg') }}" alt="Twitter" class="w-8 h-8"></a>
+                <a href="#" class="text-blue-400"><img src="{{ url_for('static', filename='images/github.svg') }}" alt="Github" class="w-8 h-8"></a>
+            </div>
+
+            <p class="mt-4">&copy; 2025 Medicine Recommendation. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function setActiveLink(element) {
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('border-white', 'active');
+            });
+            element.classList.add('border-white', 'active');
+        }
+    </script>
+</body>
+</html>
